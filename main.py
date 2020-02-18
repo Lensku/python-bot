@@ -8,6 +8,7 @@ Created on Tue Feb 18 14:55:57 2020
 from telegram.ext import Updater, InlineQueryHandler, CommandHandler
 import requests
 import re
+import yfinance as yf
 
 def get_url():
     contents = requests.get('https://random.dog/woof.json').json()    
@@ -26,20 +27,28 @@ def pic(bot, update):
     allowed_extension = ['jpg','jpeg','png']
     url = get_image_url(allowed_extension)
     chat_id = update.message.chat_id
-    bot.send_photo(chat_id=chat_id, photo=url)
+    bot.send_photo(chat_id = chat_id, photo = url)
 
 def vid(bot, update):
     print("video")
     allowed_extension = ['gif','mp4']
     url = get_image_url(allowed_extension)
     chat_id = update.message.chat_id
-    bot.sendAnimation(chat_id=chat_id, animation=url)
+    bot.sendAnimation(chat_id = chat_id, animation = url)
     
+def msft(bot, update):
+    msft = yf.Ticker("MSFT")
+    # history = msft.history(period = "max")
+    print(msft)
+    chat_id = update.message.chat_id
+    bot.sendMessage(chat_id = chat_id, text = "hello")
+
 def main():
     updater = Updater('1084871037:AAFlb-Z9LXTsgot3gj4sOxaaE64M64dBUCM')
     dp = updater.dispatcher
     dp.add_handler(CommandHandler('pic',pic))
     dp.add_handler(CommandHandler('vid',vid))
+    dp.add_handler(CommandHandler('msft',msft))
     updater.start_polling()
     updater.idle()
 
