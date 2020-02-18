@@ -9,6 +9,7 @@ from telegram.ext import Updater, InlineQueryHandler, CommandHandler
 import requests
 import re
 import yfinance as yf
+import numpy as np
 
 def get_url():
     contents = requests.get('https://random.dog/woof.json').json()    
@@ -38,10 +39,11 @@ def vid(bot, update):
     
 def msft(bot, update):
     msft = yf.Ticker("MSFT")
-    # history = msft.history(period = "max")
+    history = msft.history(period = "max")
     print(msft)
+    print(history)
     chat_id = update.message.chat_id
-    bot.sendMessage(chat_id = chat_id, text = "hello")
+    bot.sendMessage(chat_id = chat_id, text = "test")
 
 def main():
     updater = Updater('1084871037:AAFlb-Z9LXTsgot3gj4sOxaaE64M64dBUCM')
