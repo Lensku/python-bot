@@ -22,12 +22,14 @@ def get_image_url(allowed_extension):
     return url
 
 def pic(bot, update):
+    print("picture")
     allowed_extension = ['jpg','jpeg','png']
     url = get_image_url(allowed_extension)
     chat_id = update.message.chat_id
     bot.send_photo(chat_id=chat_id, photo=url)
 
 def vid(bot, update):
+    print("video")
     allowed_extension = ['gif','mp4']
     url = get_image_url(allowed_extension)
     chat_id = update.message.chat_id
