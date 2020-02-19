@@ -25,7 +25,7 @@ def pic(bot, update):
     allowed_extension = ['jpg','jpeg','png']
     url = get_image_url(allowed_extension)
     chat_id = update.message.chat_id
-    bot.send_photo(chat_id = chat_id, photo = url)
+    bot.sendPhoto(chat_id = chat_id, photo = url)
 
 def vid(bot, update):
     print("video")
