@@ -33,8 +33,8 @@ def help(bot, update):
 def main():
     updater = Updater('1084871037:AAFlb-Z9LXTsgot3gj4sOxaaE64M64dBUCM')
     dp = updater.dispatcher
-    dp.add_handler(CommandHandler('pic',pic))
-    dp.add_handler(CommandHandler('vid',vid))
+    dp.add_handler(CommandHandler('pic', pic))
+    dp.add_handler(CommandHandler('vid', vid))
     dp.add_handler(CommandHandler('help', help))
     dp.add_handler(CommandHandler('fetch', fetch))
     dp.add_handler(CommandHandler('standardized', standardized))

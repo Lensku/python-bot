@@ -16,6 +16,7 @@ def fetch(bot, update):
     print('fetch')
     start_date = '2018-01-01'
     end_date = '2020-01-01'
+    # create amazon --> then function call for the extra measurements
     amazon = data.DataReader('AMZN', 'yahoo', start_date, end_date)
     amazon.insert(6, "close_ma_20", amazon['Close'].rolling(20).mean())
     amazon.insert(7, "close_ma_100", amazon['Close'].rolling(100).mean())
@@ -64,7 +65,7 @@ def standardized(bot, update):
         ax.set_ylabel('Closing price ($)')
         ax.legend()
         buffer = BytesIO()
-        fig.savefig(buffer, format='png')
+        fig.savefig(buffer, format = 'png')
         buffer.seek(0)
         update.message.reply_photo(buffer)
 
@@ -82,13 +83,13 @@ def plot(bot, update, args):
             bot.sendMessage(chat_id = chat_id, text = message)
         else:
             fig, ax = plt.subplots(figsize=(16,9))
-            ax.plot(globals()[arg].index, globals()[arg]['Close'], label=arg)
-            ax.plot(globals()[arg].index, globals()[arg]['close_ma_20'], label='20 days rolling')
-            ax.plot(globals()[arg].index, globals()[arg]['close_ma_100'], label='100 days rolling')
+            ax.plot(globals()[arg].index, globals()[arg]['Close'], label = arg)
+            ax.plot(globals()[arg].index, globals()[arg]['close_ma_20'], label = '20 days rolling')
+            ax.plot(globals()[arg].index, globals()[arg]['close_ma_100'], label = '100 days rolling')
             ax.set_xlabel('Date')
             ax.set_ylabel('Closing price ($)')
             ax.legend()
             buffer = BytesIO()
-            fig.savefig(buffer, format='png')
+            fig.savefig(buffer, format = 'png')
             buffer.seek(0)
             update.message.reply_photo(buffer)
